@@ -12,9 +12,7 @@ function App() {
     <>
       <Header />
       <Toaster />
-      <br></br>
-      <br></br>
-      <br></br>
+
       <br></br>
       <Routes>
         <Route path="/" element={<Blogs />} />

@@ -31,7 +31,9 @@ export default function BlogCard({
 
   const handleDelete = async () => {
     try {
-      const { data } = await axios.delete(`api/vi/blog/delete-blog/${id}`);
+      const { data } = await axios.delete(
+        `http://localhost:3000/api/vi/blog/delete-blog/${id}`
+      );
       if (data?.success) {
         toast.success("Blog Deleted");
         window.location.reload();
@@ -65,7 +67,7 @@ export default function BlogCard({
       )}
       <CardHeader
         avatar={
-          <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
+          <Avatar sx={{ bgcolor: red[500] }} aria-label="image">
             {username}
           </Avatar>
         }

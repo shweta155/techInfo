@@ -22,15 +22,17 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const { data } = await axios.post("/api/vi/user/register", {
-        username: inputs.name,
-        email: inputs.email,
-        password: inputs.password,
-      });
+      const { data } = await axios.post(
+        "http://localhost:3000/api/vi/user/register",
+        {
+          username: inputs.name,
+          email: inputs.email,
+          password: inputs.password,
+        }
+      );
       if (data.success) {
-        alert("succesfully register");
         toast.success("User Register Successfully");
-        // navigate("/login");
+        navigate("/login");
       }
     } catch (error) {
       console.log(error);

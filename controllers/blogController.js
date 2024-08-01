@@ -136,8 +136,16 @@ exports.deleteBlogController = async (req, res) => {
       });
     }
 
+    // If the user field is null, return an error
+    if (!blog.user) {
+      return res.status(400).send({
+        success: false,
+        message: "User not associated with this blog",
+      });
+    }
+
     // Remove the blog from the user's blogs array
-    await blog.user.blogs.pull(blog._id);
+    blog.user.blogs.pull(blog._id);
 
     // Save the user
     await blog.user.save();
@@ -150,11 +158,11 @@ exports.deleteBlogController = async (req, res) => {
       message: "Blog Deleted!",
     });
   } catch (error) {
-    console.log(error);
+    console.error(error);
     return res.status(400).send({
       success: false,
       message: "Error While Deleting Blog",
-      error,
+      error: error.message,
     });
   }
 };
